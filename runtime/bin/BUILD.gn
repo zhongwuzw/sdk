@@ -415,8 +415,6 @@ template("dart_io") {
       }
     }
 
-    deps += [ "//third_party/boringssl" ]
-
     if (is_fuchsia) {
       if (using_fuchsia_gn_sdk) {
         public_deps = [ "$fuchsia_sdk_root/pkg/fdio" ]
@@ -427,6 +425,8 @@ template("dart_io") {
       }
     }
 
+    defines = [ "DART_IO_SECURE_SOCKET_DISABLED" ]
+    
     sources = io_impl_sources + cli_impl_sources
     sources += [
                  "builtin_natives.cc",
